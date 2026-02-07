@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hug Day App</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+    text-align: center;
+}
+
+/* floating hearts */
+.heart {
+    position: fixed;
+    color: #ffffffaa;
+    font-size: 24px;
+    animation: float 8s linear infinite;
+}
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* card style */
+.card {
+    width: 360px;
+    background: #ffffffdd;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ff69b4;
+    margin: 80px auto;
+}
+
+h2 { color: #ff1493; }
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 25px;
+    border: 1px solid #ffb6c1;
+}
+
+button {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover { background: #ff1493; }
+
+.quiz-box {
+    background: #fff0f5;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+#quizPage, #finalPage { display: none; }
+
+#result {
+    font-weight: bold;
+    color: #c71585;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart" style="left:10%">❤</div>
+<div class="heart" style="left:30%;animation-delay:2s">❤</div>
+<div class="heart" style="left:50%;animation-delay:4s">❤</div>
+<div class="heart" style="left:70%;animation-delay:1s">❤</div>
+<div class="heart" style="left:90%;animation-delay:3s">❤</div>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="card">
+    <h2>🤗 Hug Day Login</h2>
+
+    <select id="username">
+        <option value="">Select Name</option>
+        <option>Vicky</option>
+        <option>Thanu</option>
+    </select>
+
+    <input type="password" placeholder="Password">
+    <button onclick="login()">Login with Hug 💗</button>
+</div>
+
+<!-- QUIZ PAGE -->
+<div id="quizPage" class="card">
+    <h2>💗 Hug Day Quiz</h2>
+
+    <div class="quiz-box">
+        <h3>1️⃣ Where did we first see it ?</h3>
+        <button onclick="check('q1', false)">Park 🏞️</button>
+        <button onclick="check('q1', false)">Bus stand🚎 </button>
+        <button onclick="check('q1', true)">School🏫</button>
+    </div>
+
+    <div class="quiz-box">
+        <h3>2️⃣ What i say you in recent Days </h3>
+        <button onclick="check('q2', false)">Love You❤️</button>
+        <button onclick="check('q2', false)">Miss you😌</button>
+        <button onclick="check('q2', true)">Unna pakkanum🥺</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<!-- FINAL PAGE -->
+<div id="finalPage" class="card">
+    <h2>🎉 Love You Chellam  🥺🤗</h2>
+    <h3>Big Hug For You 🤗💞</h3>
+
+    <!-- GIF HERE -->
+    <img src="bubu dudu.gif" width="260" style="border-radius:20px; box-shadow:0 0 15px #ff69b4;">    <p>Happy Hug Day 💗</p>
+</div>
+
+<script>
+function login() {
+    const name = username.value;
+    if (!name) {
+        alert("Select your name 💗");
+        return;
+    }
+    loginPage.style.display = "none";
+    quizPage.style.display = "block";
+}
+
+let score = { q1:false, q2:false };
+
+function check(q, correct) {
+    if (correct) {
+        score[q] = true;
+        result.innerHTML = " parrah 😶💗";
+    } else {
+        score[q] = false;
+        result.innerHTML = " Idhu koodava marapa😢 ❌";
+        return;
+    }
+
+    if (score.q1 && score.q2) {
+        quizPage.style.display = "none";
+        finalPage.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
